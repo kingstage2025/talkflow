@@ -20,14 +20,15 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const title = typeof req.body.title === "string" ? req.body.title.trim() : "";
   const description = typeof req.body.description === "string" ? req.body.description.trim() : "";
+  const status = ["todo", "doing", "done"].includes(req.body.status) ? req.body.status : "todo";
 
   if (!title || title.length > 120 || description.length > 2000) {
     return res.status(400).json({ error: "Titre requis (1-120 caractères) et description de 0-2000 caractères." });
   }
 
   const result = db
-    .prepare("INSERT INTO tasks (user_id, title, description, status) VALUES (?, ?, ?, 'todo')")
-    .run(req.user.id, title, description);
+    .prepare("INSERT INTO tasks (user_id, title, description, completed, status) VALUES (?, ?, ?, ?, ?)")
+    .run(req.user.id, title, description, status === "done" ? 1 : 0, status);
   const task = db.prepare("SELECT * FROM tasks WHERE id = ? AND user_id = ?").get(result.lastInsertRowid, req.user.id);
   return res.status(201).json({ task: mapTask(task) });
 });
