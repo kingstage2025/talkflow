@@ -15,7 +15,7 @@ Modifie ensuite `backend/.env` et remplace `JWT_SECRET` par une valeur aléatoir
 npm run dev
 ```
 
-L'API démarre sur `http://localhost:3000`. Pour ouvrir le frontend, lance un serveur statique dans `frontend/`, par exemple avec l'extension Live Server de VS Code, sur `http://localhost:8080`.
+L'API démarre sur `http://localhost:3000`. Pour ouvrir le frontend, lance un serveur statique dans `frontend/`, par exemple avec l'extension Live Server de VS Code, sur `http://localhost:8080` ou `http://127.0.0.1:8080`.
 
 ## API
 

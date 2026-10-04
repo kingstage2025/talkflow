@@ -1,14 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const { clientOrigin } = require("./config");
+const { clientOrigins } = require("./config");
 const authRoutes = require("./routes/auth");
 const taskRoutes = require("./routes/tasks");
 
 const app = express();
 app.disable("x-powered-by");
 app.use(helmet());
-app.use(cors({ origin: clientOrigin }));
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || clientOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Origine CORS non autorisée."));
+  }
+}));
 app.use(express.json({ limit: "20kb" }));
 
 app.get("/api/health", (_req, res) => {
@@ -27,4 +34,3 @@ app.use((error, _req, res, _next) => {
 });
 
 module.exports = app;
-

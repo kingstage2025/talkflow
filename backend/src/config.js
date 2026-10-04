@@ -18,5 +18,8 @@ module.exports = {
   databasePath: process.env.DATABASE_PATH === ":memory:"
     ? ":memory:"
     : path.resolve(process.env.DATABASE_PATH || "./data/taskflow.db"),
-  clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:8080"
+  clientOrigins: (process.env.CLIENT_ORIGIN || "http://localhost:8080,http://127.0.0.1:8080")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean)
 };
