@@ -26,6 +26,7 @@ db.exec(`
     title TEXT NOT NULL,
     description TEXT NOT NULL DEFAULT '',
     completed INTEGER NOT NULL DEFAULT 0 CHECK (completed IN (0, 1)),
+    status TEXT NOT NULL DEFAULT 'todo' CHECK (status IN ('todo', 'doing', 'done')),
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -33,5 +34,11 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS idx_tasks_user_id ON tasks(user_id);
 `);
+
+const taskColumns = db.prepare("PRAGMA table_info(tasks)").all().map((column) => column.name);
+if (!taskColumns.includes("status")) {
+  db.exec("ALTER TABLE tasks ADD COLUMN status TEXT NOT NULL DEFAULT 'todo'");
+  db.exec("UPDATE tasks SET status = CASE WHEN completed = 1 THEN 'done' ELSE 'todo' END");
+}
 
 module.exports = db;
