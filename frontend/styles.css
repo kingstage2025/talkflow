@@ -1,0 +1,18 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #e8edf7; background: #101522; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top right, #273a68, #101522 50%); }
+.container { width: min(760px, 92%); margin: auto; padding: 64px 0; }
+.hero { margin-bottom: 28px; } .eyebrow { color: #7dd3fc; font-size: .75rem; font-weight: 800; letter-spacing: .16em; }
+h1 { font-size: clamp(2.2rem, 7vw, 4.4rem); line-height: .98; margin: 12px 0; } h2 { margin: 4px 0; }
+.hero p:not(.eyebrow) { color: #aab6ce; font-size: 1.05rem; }
+.card { background: rgba(22, 31, 51, .88); border: 1px solid #324363; border-radius: 20px; padding: 24px; box-shadow: 0 20px 60px #080b13aa; }
+.tabs { display: flex; gap: 8px; margin-bottom: 20px; } button { border: 0; border-radius: 10px; padding: 11px 16px; cursor: pointer; font: inherit; }
+.tab { color: #aab6ce; background: transparent; } .tab.active { background: #263858; color: white; }
+label { display: block; color: #b9c6dc; margin: 14px 0; } input { width: 100%; border: 1px solid #405273; border-radius: 9px; background: #111a2b; color: white; padding: 12px; margin-top: 7px; font: inherit; }
+.primary { color: #06101d; background: #7dd3fc; font-weight: 800; } .secondary { color: #d5deef; background: #2a3854; }
+.message { min-height: 20px; color: #fda4af; } .hidden { display: none; } .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.task-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin: 24px 0 8px; } .task-form input { margin: 0; }
+ul { list-style: none; padding: 0; margin: 20px 0 0; } li { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-top: 1px solid #324363; }
+li.done strong { text-decoration: line-through; color: #8491a8; } li small { display: block; color: #8998b0; margin-top: 5px; } .delete { color: #fda4af; background: transparent; padding: 4px; }
+@media (max-width: 620px) { .task-form { grid-template-columns: 1fr; } .toolbar { align-items: flex-start; flex-direction: column; } }
+

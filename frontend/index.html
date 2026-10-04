@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">TASKFLOW</p>
+        <h1>Organise ton travail, simplement.</h1>
+        <p>Une application de tâches sécurisée, construite avec Node.js, Express et SQLite.</p>
+      </section>
+
+      <section id="auth-panel" class="card">
+        <div class="tabs">
+          <button class="tab active" data-mode="login">Connexion</button>
+          <button class="tab" data-mode="register">Créer un compte</button>
+        </div>
+        <form id="auth-form">
+          <label>Email<input id="email" type="email" required autocomplete="email"></label>
+          <label>Mot de passe<input id="password" type="password" required minlength="8" autocomplete="current-password"></label>
+          <button class="primary" type="submit">Se connecter</button>
+          <p id="auth-message" class="message"></p>
+        </form>
+      </section>
+
+      <section id="app-panel" class="card hidden">
+        <div class="toolbar">
+          <div><span class="eyebrow">TABLEAU DE BORD</span><h2>Mes tâches</h2></div>
+          <button id="logout" class="secondary">Se déconnecter</button>
+        </div>
+        <form id="task-form" class="task-form">
+          <input id="task-title" placeholder="Titre de la tâche" required maxlength="120">
+          <input id="task-description" placeholder="Description (optionnelle)" maxlength="2000">
+          <button class="primary" type="submit">Ajouter</button>
+        </form>
+        <p id="task-message" class="message"></p>
+        <ul id="task-list"></ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+

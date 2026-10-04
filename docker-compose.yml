@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET doit être défini}
+      DATABASE_PATH: /app/backend/data/taskflow.db
+      CLIENT_ORIGIN: http://localhost:8080
+    volumes:
+      - taskflow-data:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  taskflow-data:
+

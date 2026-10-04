@@ -1,0 +1,10 @@
+node_modules/
+backend/data/
+backend/.env
+coverage/
+.git/
+.github/
+frontend/
+*.db
+*.db-shm
+*.db-wal
